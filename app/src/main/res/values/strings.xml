@@ -8,5 +8,11 @@
     <string name="note">Note</string>
     <string name="login_as_admin">Login as admin</string>
     <string name="menu">Menu</string>
+    <string name="title_activity_main2">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>
