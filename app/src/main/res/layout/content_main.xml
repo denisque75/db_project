@@ -8,4 +8,9 @@
     tools:context="com.epam.denis_telezhenko.universityhelper.ui.main.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_main__recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </android.support.constraint.ConstraintLayout>

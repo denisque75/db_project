@@ -3,6 +3,8 @@ package com.epam.denis_telezhenko.universityhelper.ui.main;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.epam.denis_telezhenko.universityhelper.R;
+import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
+import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,14 +38,26 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        setDrawerAndToggle(toolbar);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        setRecyclerView();
+    }
+
+    private void setRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.activity_main__recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new EventsRecyclerViewAdapter(StubUtils.getNotes()));
+    }
+
+    private void setDrawerAndToggle(Toolbar toolbar) {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
