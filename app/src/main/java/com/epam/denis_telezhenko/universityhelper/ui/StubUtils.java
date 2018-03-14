@@ -1,6 +1,7 @@
 package com.epam.denis_telezhenko.universityhelper.ui;
 
 import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(getTime("12:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("12:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -38,7 +39,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(getTime("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -51,7 +52,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(getTime("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -59,7 +60,7 @@ public class StubUtils {
         n.setTitle("3rd floor");
         n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке.");
-        n.setDate(new Date(getTime("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -84,20 +85,11 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(getTime("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
         noteEntities.add(n);
 
         return noteEntities;
     }
 
-    private static long getTime(String time){
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm a");
-            Date date = formatter.parse(time);
-            return date.getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
+
 }

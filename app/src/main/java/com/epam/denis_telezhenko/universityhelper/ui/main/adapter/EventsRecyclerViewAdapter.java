@@ -8,17 +8,17 @@ import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecyclerViewAdapter.ViewHolder> {
     private List<NoteEntity> noteEntities;
+    private OnClickItem onClickItem;
 
-    public EventsRecyclerViewAdapter(List<NoteEntity> noteEntities){
+    public EventsRecyclerViewAdapter(List<NoteEntity> noteEntities,OnClickItem onClickItem){
         this.noteEntities = noteEntities;
+        this.onClickItem = onClickItem;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -33,33 +33,42 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
             time = itemView.findViewById(R.id.main_card_item__time);
         }
 
-        void onBindView(NoteEntity note){
+        void onBindView(OnClickItem onClickItem, NoteEntity note){
             title.setText(note.getTitle());
             description.setText(note.getDescrition());
-            time.setText(convertLongToDate(note.getDate()));
+            time.setText(TimeUtils.getTimeInString(note.getDate()));
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickItem.clickItem(note.getId());
+                }
+            });
         }
 
-        private String convertLongToDate(Date date) {
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm a");
-            return formatter.format(date);
-        }
+
 
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_activity_item, parent, false);
-        return new ViewHolder(v);
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.onBindView(noteEntities.get(position));
+        holder.onBindView(onClickItem, noteEntities.get(position));
     }
 
     @Override
     public int getItemCount() {
         return noteEntities.size();
+    }
+
+    public interface OnClickItem {
+
+        void clickItem(long id);
     }
 }

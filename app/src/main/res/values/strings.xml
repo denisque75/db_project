@@ -16,7 +16,7 @@
     <string name="note_title_stub">Create new project for DB</string>
     <string name="note_desc_stub">All students of our group have to create in SQL Workbench new project
     and pass it on a week</string>
-    <string name="note_time_stub">13.00:12.02</string>
+    <string name="note_time_stub">12.02, 13.00 PM</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -31,5 +31,7 @@
 
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
 
 </resources>

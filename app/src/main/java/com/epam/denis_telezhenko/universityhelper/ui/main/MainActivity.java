@@ -18,13 +18,14 @@ import android.view.View;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule_of_bells.BellsScheduleActivity;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, EventsRecyclerViewAdapter.OnClickItem {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.activity_main__recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new EventsRecyclerViewAdapter(StubUtils.getNotes()));
+        recyclerView.setAdapter(new EventsRecyclerViewAdapter(StubUtils.getNotes(), this));
     }
 
     private void setDrawerAndToggle(Toolbar toolbar) {
@@ -98,6 +99,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void clickItem(long id) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.NOTE_ID_TAG, id);
+        startActivity(intent);
     }
 
 }

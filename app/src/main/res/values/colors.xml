@@ -11,4 +11,6 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="timeColor">#26A69A</color>
+    <color name="deleteAndWrongColor">#FF7043</color>
 </resources>
