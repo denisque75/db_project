@@ -19,6 +19,8 @@ import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
+import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.schedule_of_bells.BellsScheduleActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.login_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -78,9 +80,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav__schedule) {
+            Intent intent = new Intent(this, ScheduleActivity.class);
+            startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav__bells_schedule) {
-
+            Intent intent = new Intent(this, BellsScheduleActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav__note) {
 
         } else if (id == R.id.nav__login) {

@@ -20,8 +20,15 @@
 
     <string name="action_settings">Settings</string>
 
-
+    <!--login screen-->
+    <string name="title_activity_login">Login</string>
     <string name="hint_text_login">login</string>
     <string name="hint_text_password">password</string>
+
+    <!--schedule screen-->
+    <string name="title_activity_schedule">Schedule</string>
+
+    <!--schedule of bells screen-->
+    <string name="title_activity_bells_schedule">Schedule of Bells</string>
 
 </resources>
