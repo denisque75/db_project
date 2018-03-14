@@ -19,23 +19,11 @@ public class BellsScheduleActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.bells_schedule_toolbar);
         setSupportActionBar(toolbar);
-        layoutWork(getSupportActionBar());
-    }
 
-    private void layoutWork(ActionBar bar){
-        bar.setDisplayHomeAsUpEnabled(true);
-        bar.setHomeButtonEnabled(true);
-        bar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
-            Intent homeIntent = new Intent(this, MainActivity.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
+import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
@@ -87,7 +88,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, BellsScheduleActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav__note) {
-
+            Intent intent = new Intent(this, CreateNoteActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav__login) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

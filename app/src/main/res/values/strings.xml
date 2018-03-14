@@ -7,8 +7,11 @@
     <string name="schedule_of_bells">Bell\'s schedule</string>
     <string name="note">Note</string>
     <string name="login">Login</string>
+    <string name="password">Password</string>
     <string name="menu">Menu</string>
+    <string name="details">Детальная информация</string>
     <string name="title_activity_main">Ближайшие события</string>
+    <string name="new_note">Новая заметка</string>
 
     <string name="note_title_stub">Create new project for DB</string>
     <string name="note_desc_stub">All students of our group have to create in SQL Workbench new project
@@ -22,8 +25,6 @@
 
     <!--login screen-->
     <string name="title_activity_login">Login</string>
-    <string name="hint_text_login">login</string>
-    <string name="hint_text_password">password</string>
 
     <!--schedule screen-->
     <string name="title_activity_schedule">Schedule</string>

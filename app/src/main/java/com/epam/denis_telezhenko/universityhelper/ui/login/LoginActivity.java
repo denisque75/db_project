@@ -26,32 +26,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         Toolbar toolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(toolbar);
-        layoutWork(getSupportActionBar());
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        findID();
 
         signIn.setOnClickListener(this);
-    }
-
-    private void layoutWork(ActionBar bar){
-        bar.setDisplayHomeAsUpEnabled(true);
-        bar.setHomeButtonEnabled(true);
-        bar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        findID();
     }
 
     private void findID(){
         login = findViewById(R.id.login_log_text);
         password = findViewById(R.id.login_password_text);
         signIn = findViewById(R.id.login_button);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
-            Intent homeIntent = new Intent(this, MainActivity.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 

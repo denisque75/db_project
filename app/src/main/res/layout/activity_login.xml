@@ -54,7 +54,7 @@
                     android:id="@+id/login_log_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_text_login" />
+                    android:hint="@string/login" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -73,7 +73,7 @@
                     android:id="@+id/login_password_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_text_password" />
+                    android:hint="@string/password" />
 
             </android.support.design.widget.TextInputLayout>
 

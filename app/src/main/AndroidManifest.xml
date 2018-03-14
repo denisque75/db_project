@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.details.DetailsActivity" />
-        <activity android:name=".ui.schedule.ScheduleActivity" />
-        <activity android:name=".ui.schedule_of_bells.BellsScheduleActivity" />
-        <activity android:name=".ui.create_note.CreateNoteActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.details.DetailsActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.schedule.ScheduleActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.schedule_of_bells.BellsScheduleActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.create_note.CreateNoteActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.login.LoginActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
