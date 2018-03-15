@@ -31,7 +31,14 @@
 
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
-    <string name="edit">Edit</string>
-    <string name="remove">Remove</string>
+    <string name="edit">Изменить</string>
+    <string name="remove">Удалить</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="alarm_is_off">Отключен</string>
+    <string name="alarm_state">Состояние будильника</string>
+    <string name="alarm_is_on">Включен</string>
+    <string name="choose_date">Выбрать дату</string>
+    <string name="choose_time">Выбрать время</string>
 
 </resources>

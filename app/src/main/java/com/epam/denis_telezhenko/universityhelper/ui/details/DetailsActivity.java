@@ -30,10 +30,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setDetailsFragment(long id) {
-        Fragment fragment = DetailsFragment.newInstance(id);
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(DetailsFragment.TAG);
+        if (fragment == null){
+            fragment = DetailsFragment.newInstance(id);
+        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.details_container, fragment)
+                .replace(R.id.details_container, fragment, DetailsFragment.TAG)
                 .commit();
     }
 }

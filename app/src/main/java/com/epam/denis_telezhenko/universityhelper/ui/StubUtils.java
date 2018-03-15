@@ -26,7 +26,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(TimeUtils.getTimeInLong("12:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 12:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -39,7 +39,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -52,7 +52,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -60,7 +60,7 @@ public class StubUtils {
         n.setTitle("3rd floor");
         n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке.");
-        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
         n = new NoteEntity();
@@ -85,7 +85,7 @@ public class StubUtils {
                 " Мы представляем самый лучший правильный переводчик, работающий с" +
                 " самыми различными тематическими текстами (юридическими, медицинскими, " +
                 "техническими и прочими).");
-        n.setDate(new Date(TimeUtils.getTimeInLong("13:45 PM")));
+        n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
         return noteEntities;

@@ -19,5 +19,7 @@
     <dimen name="login_merging_top">16dp</dimen>
     <dimen name="login_merging_end">16dp</dimen>
     <dimen name="login_merging_start">16dp</dimen>
+    <dimen name="drawable_padding">12dp</dimen>
+    <dimen name="alarm_state_textSize">16sp</dimen>
 
 </resources>

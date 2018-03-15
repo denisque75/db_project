@@ -1,29 +1,119 @@
 package com.epam.denis_telezhenko.universityhelper.ui.details;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
+import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
+import com.epam.denis_telezhenko.universityhelper.ui.details.dialog.DatePickerFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.details.dialog.TimeDialogFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
+
+import java.util.List;
 
 public class EditNoteFragment extends Fragment {
+    public static final String TAG = "edit_note_fragment";
+
+    private List<NoteEntity> noteEntities;
+    private long id;
+
+    private TextView date;
+    private TextView time;
 
     public EditNoteFragment() {
         // Required empty public constructor
     }
 
-    public static EditNoteFragment newInstance(String param1, String param2) {
-        return new EditNoteFragment();
+    public static EditNoteFragment newInstance(long id) {
+        EditNoteFragment editNoteFragment = new EditNoteFragment();
+        Bundle args = new Bundle();
+        args.putLong(DetailsActivity.NOTE_ID_TAG, id);
+        editNoteFragment.setArguments(args);
+        return editNoteFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_note, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_note, container, false);
+
+        noteEntities = StubUtils.getNotes();
+        id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
+        NoteEntity note = getNoteById();
+
+        EditText title = rootView.findViewById(R.id.details_edit__title);
+        title.setText(note.getTitle());
+
+        EditText desc = rootView.findViewById(R.id.details_edit__desc);
+        desc.setText(note.getDescrition());
+
+        date = rootView.findViewById(R.id.details_edit__choose_date);
+        time = rootView.findViewById(R.id.details_edit__choose_time);
+
+        RadioGroup radioGroup = rootView.findViewById(R.id.details_edit__alarm);
+        radioGroup.setOnCheckedChangeListener(this::changeAlarmState);
+
+        if (note.getDate() != null) {
+            setVisibleDateText(View.VISIBLE);
+            date.setText(TimeUtils.getDateInString(note.getDate()));
+            time.setText(TimeUtils.getTimeInString(note.getDate()));
+            ((RadioButton) rootView.findViewById(R.id.details_edit__alarm_on)).setChecked(true);
+        } else {
+            setVisibleDateText(View.GONE);
+            ((RadioButton) rootView.findViewById(R.id.details_edit__alarm_off)).setChecked(false);
+        }
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        time.setOnClickListener(this::openTimeDialog);
+        date.setOnClickListener(this::openDateDialog);
+    }
+
+    private void openDateDialog(View view) {
+        new DatePickerFragment().show(getFragmentManager(), DatePickerFragment.TAG);
+    }
+
+    private void openTimeDialog(View view) {
+        new TimeDialogFragment().show(getFragmentManager(), TimeDialogFragment.TAG);
+    }
+
+    private void changeAlarmState(RadioGroup radioGroup, int i) {
+        if (i == R.id.details_edit__alarm_on) {
+            time.setVisibility(View.VISIBLE);
+            date.setVisibility(View.VISIBLE);
+        } else {
+            time.setVisibility(View.GONE);
+            date.setVisibility(View.GONE);
+        }
+    }
+
+    public NoteEntity getNoteById() {
+        for (int i = 0; i < noteEntities.size(); i++) {
+            if (noteEntities.get(i).getId() == id) {
+                return noteEntities.get(i);
+            }
+        }
+        return noteEntities.get(0);
+    }
+
+    public void setVisibleDateText(int visibility) {
+        date.setVisibility(visibility);
+
+        time.setVisibility(visibility);
     }
 }

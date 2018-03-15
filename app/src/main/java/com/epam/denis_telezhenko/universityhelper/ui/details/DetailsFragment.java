@@ -3,11 +3,14 @@ package com.epam.denis_telezhenko.universityhelper.ui.details;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
@@ -20,6 +23,9 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
     private List<NoteEntity> noteEntities;
+    public static final String TAG = "details_fragment";
+
+    private long id;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -27,9 +33,9 @@ public class DetailsFragment extends Fragment {
 
     public static DetailsFragment newInstance(long id) {
         DetailsFragment detailsFragment = new DetailsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putLong(DetailsActivity.NOTE_ID_TAG, id);
-        detailsFragment.setArguments(bundle);
+        Bundle args = new Bundle();
+        args.putLong(DetailsActivity.NOTE_ID_TAG, id);
+        detailsFragment.setArguments(args);
         return detailsFragment;
     }
 
@@ -38,9 +44,9 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
-        long id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
+        id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
         noteEntities = StubUtils.getNotes();
-        NoteEntity noteEntity = getNoteById(id);
+        NoteEntity noteEntity = getNoteById();
 
         TextView titleText = rootView.findViewById(R.id.details__title);
         titleText.setText(noteEntity.getTitle());
@@ -54,7 +60,25 @@ public class DetailsFragment extends Fragment {
         return rootView;
     }
 
-    private NoteEntity getNoteById(long id) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Button editButton = view.findViewById(R.id.details__edit);
+        editButton.setOnClickListener(this::editButton);
+    }
+
+    private void editButton(View view) {
+        Fragment fragment = getFragmentManager().findFragmentByTag(EditNoteFragment.TAG);
+        if (fragment == null){
+            fragment = EditNoteFragment.newInstance(id);
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.details_container, fragment, EditNoteFragment.TAG)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private NoteEntity getNoteById() {
         for (int i = 0; i < noteEntities.size(); i++) {
             if (noteEntities.get(i).getId() == id) {
                 return noteEntities.get(i);
