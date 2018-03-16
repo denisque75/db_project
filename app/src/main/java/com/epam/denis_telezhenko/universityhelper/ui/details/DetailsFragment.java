@@ -1,12 +1,9 @@
 package com.epam.denis_telezhenko.universityhelper.ui.details;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +15,11 @@ import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
-import java.util.Date;
 import java.util.List;
 
 public class DetailsFragment extends Fragment {
-    private List<NoteEntity> noteEntities;
     public static final String TAG = "details_fragment";
-
+    private List<NoteEntity> noteEntities;
     private long id;
 
     public DetailsFragment() {

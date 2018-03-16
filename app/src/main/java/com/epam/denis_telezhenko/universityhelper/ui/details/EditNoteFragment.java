@@ -1,8 +1,7 @@
 package com.epam.denis_telezhenko.universityhelper.ui.details;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
-import android.net.Uri;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,6 +22,8 @@ import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.List;
 
+import static com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils.getDateInString;
+
 public class EditNoteFragment extends Fragment {
     public static final String TAG = "edit_note_fragment";
 
@@ -31,6 +32,8 @@ public class EditNoteFragment extends Fragment {
 
     private TextView date;
     private TextView time;
+    private EditText title;
+    private EditText desc;
 
     public EditNoteFragment() {
         // Required empty public constructor
@@ -53,10 +56,10 @@ public class EditNoteFragment extends Fragment {
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
         NoteEntity note = getNoteById();
 
-        EditText title = rootView.findViewById(R.id.details_edit__title);
+        title = rootView.findViewById(R.id.details_edit__title);
         title.setText(note.getTitle());
 
-        EditText desc = rootView.findViewById(R.id.details_edit__desc);
+        desc = rootView.findViewById(R.id.details_edit__desc);
         desc.setText(note.getDescrition());
 
         date = rootView.findViewById(R.id.details_edit__choose_date);
@@ -67,7 +70,7 @@ public class EditNoteFragment extends Fragment {
 
         if (note.getDate() != null) {
             setVisibleDateText(View.VISIBLE);
-            date.setText(TimeUtils.getDateInString(note.getDate()));
+            date.setText(getDateInString(note.getDate()));
             time.setText(TimeUtils.getTimeInString(note.getDate()));
             ((RadioButton) rootView.findViewById(R.id.details_edit__alarm_on)).setChecked(true);
         } else {
@@ -75,6 +78,7 @@ public class EditNoteFragment extends Fragment {
             ((RadioButton) rootView.findViewById(R.id.details_edit__alarm_off)).setChecked(false);
         }
 
+        rootView.findViewById(R.id.details_edit__edit_button).setOnClickListener(this::changeData);
         return rootView;
     }
 
@@ -84,12 +88,41 @@ public class EditNoteFragment extends Fragment {
         date.setOnClickListener(this::openDateDialog);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case DatePickerFragment.DATE_REQUEST_CODE:
+                    int year = data.getIntExtra(DatePickerFragment.YEAR_SELECTED, -1);
+                    int month = data.getIntExtra(DatePickerFragment.MONTH_SELECTED, -1);
+                    int day = data.getIntExtra(DatePickerFragment.DAY_SELECTED, -1);
+                    String formattedDate = TimeUtils.getDateInString(year, month, day);
+                    date.setText(formattedDate);
+                    break;
+                case TimeDialogFragment.TIME_REQUEST_CODE:
+                    int hour = data.getIntExtra(TimeDialogFragment.HOUR_SELECTED, -1);
+                    int minutes = data.getIntExtra(TimeDialogFragment.MINUTE_SELECTED, -1);
+                    String formattedTime = TimeUtils.getTimeInString(hour, minutes);
+                    time.setText(formattedTime);
+                    break;
+            }
+        }
+    }
+
     private void openDateDialog(View view) {
-        new DatePickerFragment().show(getFragmentManager(), DatePickerFragment.TAG);
+        DatePickerFragment datePickerFragment = new DatePickerFragment();
+        datePickerFragment.setTargetFragment(this, DatePickerFragment.DATE_REQUEST_CODE);
+        datePickerFragment.show(getFragmentManager(), DatePickerFragment.TAG);
     }
 
     private void openTimeDialog(View view) {
-        new TimeDialogFragment().show(getFragmentManager(), TimeDialogFragment.TAG);
+        TimeDialogFragment timeDialogFragment = new TimeDialogFragment();
+        timeDialogFragment.setTargetFragment(this, TimeDialogFragment.TIME_REQUEST_CODE);
+        timeDialogFragment.show(getFragmentManager(), TimeDialogFragment.TAG);
+    }
+
+    private void changeData(View view) {
+        //TODO: save data and finish fragment
     }
 
     private void changeAlarmState(RadioGroup radioGroup, int i) {

@@ -1,10 +1,10 @@
 package com.epam.denis_telezhenko.universityhelper.ui.details;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.epam.denis_telezhenko.universityhelper.R;
@@ -25,8 +25,10 @@ public class DetailsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        long id = getIntent().getLongExtra(NOTE_ID_TAG, 0);
-        setDetailsFragment(id);
+        if (savedInstanceState == null) {
+            long id = getIntent().getLongExtra(NOTE_ID_TAG, 0);
+            setDetailsFragment(id);
+        }
     }
 
     private void setDetailsFragment(long id) {
