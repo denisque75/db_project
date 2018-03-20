@@ -12,6 +12,7 @@
     <dimen name="details_card_title_textSize">24sp</dimen>
     <dimen name="details_card_desc_textSize">18sp</dimen>
     <dimen name="card_default_margins">12dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
     
     <!--login layout-->
     <dimen name="login_button_high">50dp</dimen>

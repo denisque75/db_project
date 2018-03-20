@@ -16,8 +16,8 @@ import android.widget.TextView;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
-import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerFragment;
-import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerEditNoteFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogEditNoteFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.List;
@@ -92,16 +92,16 @@ public class EditNoteFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                case DatePickerFragment.DATE_REQUEST_CODE:
-                    int year = data.getIntExtra(DatePickerFragment.YEAR_SELECTED, -1);
-                    int month = data.getIntExtra(DatePickerFragment.MONTH_SELECTED, -1);
-                    int day = data.getIntExtra(DatePickerFragment.DAY_SELECTED, -1);
+                case DatePickerEditNoteFragment.DATE_REQUEST_CODE:
+                    int year = data.getIntExtra(DatePickerEditNoteFragment.YEAR_SELECTED, -1);
+                    int month = data.getIntExtra(DatePickerEditNoteFragment.MONTH_SELECTED, -1);
+                    int day = data.getIntExtra(DatePickerEditNoteFragment.DAY_SELECTED, -1);
                     String formattedDate = TimeUtils.getDateInString(year, month, day);
                     date.setText(formattedDate);
                     break;
-                case TimeDialogFragment.TIME_REQUEST_CODE:
-                    int hour = data.getIntExtra(TimeDialogFragment.HOUR_SELECTED, -1);
-                    int minutes = data.getIntExtra(TimeDialogFragment.MINUTE_SELECTED, -1);
+                case TimeDialogEditNoteFragment.TIME_REQUEST_CODE:
+                    int hour = data.getIntExtra(TimeDialogEditNoteFragment.HOUR_SELECTED, -1);
+                    int minutes = data.getIntExtra(TimeDialogEditNoteFragment.MINUTE_SELECTED, -1);
                     String formattedTime = TimeUtils.getTimeInString(hour, minutes);
                     time.setText(formattedTime);
                     break;
@@ -110,15 +110,15 @@ public class EditNoteFragment extends Fragment {
     }
 
     private void openDateDialog(View view) {
-        DatePickerFragment datePickerFragment = new DatePickerFragment();
-        datePickerFragment.setTargetFragment(this, DatePickerFragment.DATE_REQUEST_CODE);
-        datePickerFragment.show(getFragmentManager(), DatePickerFragment.TAG);
+        DatePickerEditNoteFragment datePickerEditNoteFragment = new DatePickerEditNoteFragment();
+        datePickerEditNoteFragment.setTargetFragment(this, DatePickerEditNoteFragment.DATE_REQUEST_CODE);
+        datePickerEditNoteFragment.show(getFragmentManager(), DatePickerEditNoteFragment.TAG);
     }
 
     private void openTimeDialog(View view) {
-        TimeDialogFragment timeDialogFragment = new TimeDialogFragment();
-        timeDialogFragment.setTargetFragment(this, TimeDialogFragment.TIME_REQUEST_CODE);
-        timeDialogFragment.show(getFragmentManager(), TimeDialogFragment.TAG);
+        TimeDialogEditNoteFragment timeDialogEditNoteFragment = new TimeDialogEditNoteFragment();
+        timeDialogEditNoteFragment.setTargetFragment(this, TimeDialogEditNoteFragment.TIME_REQUEST_CODE);
+        timeDialogEditNoteFragment.show(getFragmentManager(), TimeDialogEditNoteFragment.TAG);
     }
 
     private void changeData(View view) {
