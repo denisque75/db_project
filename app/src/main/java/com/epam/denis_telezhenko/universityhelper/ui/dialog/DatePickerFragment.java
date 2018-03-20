@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui.details.dialog;
+package com.epam.denis_telezhenko.universityhelper.ui.dialog;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

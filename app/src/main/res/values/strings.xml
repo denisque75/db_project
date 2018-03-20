@@ -32,6 +32,7 @@
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
     <string name="edit">Изменить</string>
+    <string name="create">Создать</string>
     <string name="remove">Удалить</string>
     <string name="title">Заголовок</string>
     <string name="description">Описание</string>

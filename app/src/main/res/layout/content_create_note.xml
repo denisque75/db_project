@@ -1,9 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.epam.denis_telezhenko.universityhelper.ui.details.EditNoteFragment">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
         android:id="@+id/title_card"
@@ -13,23 +12,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/details_edit__title_InputLayout"
+            android:id="@+id/new_note__title_InputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/title">
 
-        <EditText
-            android:id="@+id/details_edit__title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/drawable_padding"
-            android:drawableStart="@drawable/ic_title_24dp"
-            android:ems="10"
-            android:inputType="text"
-            android:lineSpacingExtra="8sp"
-            android:nextFocusDown="@id/details_edit__desc"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse" />
+            <EditText
+                android:id="@+id/new_note__title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:drawableStart="@drawable/ic_title_24dp"
+                android:ems="10"
+                android:inputType="text"
+                android:lineSpacingExtra="8sp"
+                android:nextFocusDown="@id/new_note__desc"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse" />
         </android.support.design.widget.TextInputLayout>
     </android.support.v7.widget.CardView>
 
@@ -42,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_card">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/details_edit__desc_InputLayout"
+            android:id="@+id/new_note__desc_InputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -50,7 +49,7 @@
             android:hint="@string/description">
 
             <EditText
-                android:id="@+id/details_edit__desc"
+                android:id="@+id/new_note__desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/drawable_padding"
@@ -90,7 +89,7 @@
                 android:textSize="@dimen/alarm_state_textSize" />
 
             <RadioGroup
-                android:id="@+id/details_edit__alarm"
+                android:id="@+id/new_note__alarm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -98,21 +97,21 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/details_edit__alarm_off"
+                    android:id="@+id/new_note__alarm_off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/alarm_is_off" />
 
                 <RadioButton
-                    android:id="@+id/details_edit__alarm_on"
+                    android:id="@+id/new_note__alarm_on"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/alarm_is_on" />
             </RadioGroup>
 
             <TextView
-                android:id="@+id/details_edit__choose_date"
+                android:id="@+id/new_note__choose_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -121,10 +120,10 @@
                 android:padding="8dp"
                 android:text="@string/choose_date"
                 android:textColor="@color/timeColor"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/details_edit__choose_time"
+                android:id="@+id/new_note__choose_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -134,17 +133,17 @@
                 android:padding="8dp"
                 android:text="@string/choose_time"
                 android:textColor="@color/timeColor"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <Button
-        android:id="@+id/details_edit__edit_button"
+        android:id="@+id/new_note__edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/edit"
+        android:text="@string/create"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

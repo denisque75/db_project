@@ -16,8 +16,8 @@ import android.widget.TextView;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
-import com.epam.denis_telezhenko.universityhelper.ui.details.dialog.DatePickerFragment;
-import com.epam.denis_telezhenko.universityhelper.ui.details.dialog.TimeDialogFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.List;
