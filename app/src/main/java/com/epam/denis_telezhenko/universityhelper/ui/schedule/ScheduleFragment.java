@@ -12,18 +12,21 @@ import com.epam.denis_telezhenko.universityhelper.R;
 
 public class ScheduleFragment extends Fragment {
 
+    private View view;
+    public static final String TAG = "schedule_fragment";
+
     public ScheduleFragment() {
         // Required empty public constructor
     }
 
-    public static ScheduleFragment newInstance(String param1, String param2) {
+    public static ScheduleFragment newInstance() {
         return new ScheduleFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        return view;
     }
 }

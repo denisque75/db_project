@@ -16,7 +16,7 @@ public class EditScheduleFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static EditScheduleFragment newInstance(String param1, String param2) {
+    public static EditScheduleFragment newInstance() {
         return new EditScheduleFragment();
     }
 

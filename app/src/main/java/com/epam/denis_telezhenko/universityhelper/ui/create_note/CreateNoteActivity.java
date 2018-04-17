@@ -41,6 +41,7 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
         title = findViewById(R.id.new_note__title);

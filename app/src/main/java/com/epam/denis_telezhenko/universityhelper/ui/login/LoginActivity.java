@@ -28,8 +28,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
         findID();

@@ -7,24 +7,25 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
+        style="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/schedule_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             app:title="@string/title_activity_schedule"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/schedule_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
-        tools:context="com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity">
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-    </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -21,8 +21,9 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
         if (savedInstanceState == null) {
