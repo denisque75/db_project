@@ -7,9 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsFragment;
@@ -18,9 +20,11 @@ import com.epam.denis_telezhenko.universityhelper.ui.details.EditNoteFragment;
 public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
 
     private FloatingActionButton floatingBut;
+    private TextView entranceTextView;
 
     private void findID(){
         floatingBut = findViewById(R.id.schedule_floating_button);
+        entranceTextView = findViewById(R.id.schedule_group_name);
     }
 
     @Override
@@ -41,7 +45,7 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
         setScheduleFragment();
 
         floatingBut.setOnClickListener(v -> {
-            ScheduleDialogActivity sda = new ScheduleDialogActivity(ScheduleActivity.this);
+            ScheduleDialogActivity sda = new ScheduleDialogActivity(ScheduleActivity.this, entranceTextView);
             sda.show();
         });
     }
@@ -63,9 +67,6 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
 
     private void setScheduleFragment(){
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-//                .add(R.id.schedule_container, new ScheduleFragment())
-                .commit();
     }
 
 }

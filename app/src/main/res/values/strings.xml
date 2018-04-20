@@ -23,14 +23,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <!--login screen-->
-    <string name="title_activity_login">Login</string>
-
-    <!--schedule screen-->
-    <string name="title_activity_schedule">Расписание пар</string>
-
-    <!--schedule of bells screen-->
-    <string name="title_activity_bells_schedule">Schedule of Bells</string>
     <string name="edit">Изменить</string>
     <string name="create">Создать</string>
     <string name="remove">Удалить</string>
@@ -41,5 +33,16 @@
     <string name="alarm_is_on">Включен</string>
     <string name="choose_date">Выбрать дату</string>
     <string name="choose_time">Выбрать время</string>
+
+    <!--login screen-->
+    <string name="title_activity_login">Login</string>
+
+    <!--schedule screen-->
+    <string name="title_activity_schedule">Расписание пар</string>
+    <string name="button_ok_text">ОК</string>
+    <string name="schedule_group_text">Группа:</string>
+
+    <!--schedule of bells screen-->
+    <string name="title_activity_bells_schedule">Schedule of Bells</string>
 
 </resources>
