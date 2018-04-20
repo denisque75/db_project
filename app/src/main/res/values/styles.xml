@@ -26,5 +26,9 @@
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">31sp</item>
+    </style>
 
 </resources>

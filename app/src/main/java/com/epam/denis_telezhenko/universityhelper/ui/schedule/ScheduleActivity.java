@@ -1,6 +1,7 @@
 package com.epam.denis_telezhenko.universityhelper.ui.schedule;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsFragment;
@@ -15,10 +17,18 @@ import com.epam.denis_telezhenko.universityhelper.ui.details.EditNoteFragment;
 
 public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
 
+    private FloatingActionButton floatingBut;
+
+    private void findID(){
+        floatingBut = findViewById(R.id.schedule_floating_button);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+        findID();
 
         Toolbar toolbar = findViewById(R.id.schedule_toolbar);
         setSupportActionBar(toolbar);
@@ -29,6 +39,11 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
         setScheduleFragment();
+
+        floatingBut.setOnClickListener(v -> {
+            ScheduleDialogActivity sda = new ScheduleDialogActivity(ScheduleActivity.this);
+            sda.show();
+        });
     }
 
 
@@ -49,7 +64,7 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
     private void setScheduleFragment(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .add(R.id.schedule_container, new ScheduleFragment())
+//                .add(R.id.schedule_container, new ScheduleFragment())
                 .commit();
     }
 

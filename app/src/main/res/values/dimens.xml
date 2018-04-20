@@ -23,4 +23,8 @@
     <dimen name="drawable_padding">12dp</dimen>
     <dimen name="alarm_state_textSize">16sp</dimen>
 
+    <!--schedule layout-->
+
+    <dimen name="schedule_appbar_high">200dp</dimen>
+
 </resources>

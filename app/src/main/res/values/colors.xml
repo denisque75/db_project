@@ -13,4 +13,5 @@
     <color name="white">#ffffff</color>
     <color name="timeColor">#26A69A</color>
     <color name="deleteAndWrongColor">#FF7043</color>
+    <color name="scheduleGroupInfoColor">#7bffa726</color>
 </resources>
