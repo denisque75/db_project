@@ -10,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ScheduleDialogActivity extends Dialog implements View.OnClickListener {
 
@@ -81,5 +83,6 @@ public class ScheduleDialogActivity extends Dialog implements View.OnClickListen
     public void onClick(View v) {
         textView.setText(getGroup());
         dismiss();
+        Toast.makeText(getContext(),textView.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }

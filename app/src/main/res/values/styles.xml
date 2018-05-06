@@ -31,4 +31,36 @@
         <item name="android:textSize">31sp</item>
     </style>
 
+    <style name="TextTitle">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="TextSchedule" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="TextInfoSchedule" parent="@android:style/TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="ScheduleTextView" parent="TextInfoSchedule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/schedule_info_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rectangle</item>
+    </style>
+
+    <style name="ScheduleStaticTextView" parent="TextInfoSchedule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/rectangle</item>
+    </style>
+
 </resources>

@@ -4,22 +4,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int numbers;
 
-    public ViewPagerAdapter(FragmentManager fm, int numbers) {
+    public ScheduleViewPagerAdapter(FragmentManager fm, int numbers) {
         super(fm);
         this.numbers = numbers;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return ScheduleFragment.newInstance(position);
     }
 
     @Override
     public int getCount() {
         return numbers;
     }
+
+
+
 }
