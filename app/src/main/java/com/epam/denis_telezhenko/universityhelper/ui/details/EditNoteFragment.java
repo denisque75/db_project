@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerEditNoteFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogEditNoteFragment;
@@ -27,7 +27,7 @@ import static com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils.getD
 public class EditNoteFragment extends Fragment {
     public static final String TAG = "edit_note_fragment";
 
-    private List<NoteEntity> noteEntities;
+    private List<Note> noteEntities;
     private long id;
 
     private TextView date;
@@ -54,13 +54,13 @@ public class EditNoteFragment extends Fragment {
 
         noteEntities = StubUtils.getNotes();
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
-        NoteEntity note = getNoteById();
+        Note note = getNoteById();
 
         title = rootView.findViewById(R.id.details_edit__title);
         title.setText(note.getTitle());
 
         desc = rootView.findViewById(R.id.details_edit__desc);
-        desc.setText(note.getDescrition());
+        desc.setText(note.getDescription());
 
         date = rootView.findViewById(R.id.details_edit__choose_date);
         time = rootView.findViewById(R.id.details_edit__choose_time);
@@ -135,7 +135,7 @@ public class EditNoteFragment extends Fragment {
         }
     }
 
-    public NoteEntity getNoteById() {
+    public Note getNoteById() {
         for (int i = 0; i < noteEntities.size(); i++) {
             if (noteEntities.get(i).getId() == id) {
                 return noteEntities.get(i);

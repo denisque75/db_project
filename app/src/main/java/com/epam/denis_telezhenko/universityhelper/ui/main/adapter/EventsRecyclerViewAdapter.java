@@ -7,16 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecyclerViewAdapter.ViewHolder> {
-    private List<NoteEntity> noteEntities;
+    private List<Note> noteEntities;
     private OnClickItem onClickItem;
 
-    public EventsRecyclerViewAdapter(List<NoteEntity> noteEntities,OnClickItem onClickItem){
+    public EventsRecyclerViewAdapter(List<Note> noteEntities, OnClickItem onClickItem){
         this.noteEntities = noteEntities;
         this.onClickItem = onClickItem;
     }
@@ -33,9 +34,9 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
             time = itemView.findViewById(R.id.main_card_item__time);
         }
 
-        void onBindView(OnClickItem onClickItem, NoteEntity note){
+        void onBindView(OnClickItem onClickItem, Note note){
             title.setText(note.getTitle());
-            description.setText(note.getDescrition());
+            description.setText(note.getDescription());
             time.setText(TimeUtils.getTimeInString(note.getDate()));
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +65,23 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
 
     @Override
     public int getItemCount() {
+        if (noteEntities == null) {
+            return 0;
+        }
         return noteEntities.size();
+    }
+
+    public void addNote(Note note) {
+        if (noteEntities == null) {
+            noteEntities = new ArrayList<>();
+        }
+        noteEntities.add(note);
+        notifyItemChanged(noteEntities.size() - 1);
+    }
+
+    public void setNoteEntities(List<Note> noteEntities) {
+        this.noteEntities = noteEntities;
+        notifyDataSetChanged();
     }
 
     public interface OnClickItem {

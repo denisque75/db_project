@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.BaseDatePicker;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.BaseTimePicker;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerCreateNoteFragment;
@@ -20,6 +21,13 @@ import com.epam.denis_telezhenko.universityhelper.ui.dialog.OnPickerCompleteList
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogEditNoteFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimePickerCreateNoteFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class CreateNoteActivity extends AppCompatActivity implements OnPickerCompleteListener {
     public static final String RESULT = "result";
@@ -29,6 +37,8 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
     private EditText title;
     private EditText desc;
     private CardView cardView;
+
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,7 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
         time.setOnClickListener(this::openTimeDialog);
         date.setOnClickListener(this::openDateDialog);
 
+        reference = FirebaseDatabase.getInstance().getReference();
         Button editButton = findViewById(R.id.new_note__create_button);
         editButton.setOnClickListener(this::saveButton);
     }
@@ -73,7 +84,15 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
     }
 
     private void saveButton(View view) {
-        //todo: validate and save data
+        Note note = new Note();
+        note.setTitle(title.getText().toString().trim());
+        note.setDescription(desc.getText().toString().trim());
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        reference.child("notes").child(uid).push().
+                setValue(note);
+        //todo: save to room
     }
 
     private void changeAlarmState(RadioGroup radioGroup, int i) {

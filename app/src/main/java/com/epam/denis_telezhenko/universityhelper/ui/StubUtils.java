@@ -1,10 +1,8 @@
 package com.epam.denis_telezhenko.universityhelper.ui;
 
-import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,13 +11,13 @@ public class StubUtils {
 
     private StubUtils() {}
 
-    public static List<NoteEntity> getNotes(){
-        List<NoteEntity> noteEntities = new ArrayList<>();
+    public static List<Note> getNotes(){
+        List<Note> noteEntities = new ArrayList<>();
 
-        NoteEntity n = new NoteEntity();
+        Note n = new Note();
         n.setId(1);
         n.setTitle("Create DB");
-        n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
+        n.setDescription("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке." +
                 " Чтобы получить желаемый результат, необходимо лишь вставить исходную статью в" +
                 " соответствующее отделение, затем выбрать параметры операции и активировать процесс.\n" +
@@ -29,10 +27,10 @@ public class StubUtils {
         n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 12:45 PM")));
         noteEntities.add(n);
 
-        n = new NoteEntity();
+        n = new Note();
         n.setId(2);
         n.setTitle("Go to 3rd floor");
-        n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
+        n.setDescription("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке." +
                 " Чтобы получить желаемый результат, необходимо лишь вставить исходную статью в" +
                 " соответствующее отделение, затем выбрать параметры операции и активировать процесс.\n" +
@@ -42,10 +40,10 @@ public class StubUtils {
         n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
-        n = new NoteEntity();
+        n = new Note();
         n.setId(3);
         n.setTitle("Pолучить желаемый результат, необходимо лишь");
-        n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
+        n.setDescription("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке." +
                 " Чтобы получить желаемый результат, необходимо лишь вставить исходную статью в" +
                 " соответствующее отделение, затем выбрать параметры операции и активировать процесс.\n" +
@@ -55,18 +53,18 @@ public class StubUtils {
         n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
-        n = new NoteEntity();
+        n = new Note();
         n.setId(4);
         n.setTitle("3rd floor");
-        n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
+        n.setDescription("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке.");
         n.setDate(new Date(TimeUtils.getTimeInLong("2018-03-23, 13:45 PM")));
         noteEntities.add(n);
 
-        n = new NoteEntity();
+        n = new Note();
         n.setId(5);
         n.setTitle("Tематическими текстам");
-        n.setDescrition("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
+        n.setDescription("Кроме того, ресурс даёт возможность подготовиться к зарубежной" +
                 " командировке или туристической поездке." +
                 " Чтобы получить желаемый результат, необходимо лишь вставить исходную статью в" +
                 " соответствующее отделение, затем выбрать параметры операции и активировать процесс.\n" +

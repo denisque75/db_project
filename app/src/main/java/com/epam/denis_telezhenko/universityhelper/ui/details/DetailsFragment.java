@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
     public static final String TAG = "details_fragment";
-    private List<NoteEntity> noteEntities;
+    private List<Note> noteEntities;
     private long id;
 
     public DetailsFragment() {
@@ -41,16 +41,16 @@ public class DetailsFragment extends Fragment {
 
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
         noteEntities = StubUtils.getNotes();
-        NoteEntity noteEntity = getNoteById();
+        Note note = getNoteById();
 
         TextView titleText = rootView.findViewById(R.id.details__title);
-        titleText.setText(noteEntity.getTitle());
+        titleText.setText(note.getTitle());
 
         TextView descText = rootView.findViewById(R.id.details__description);
-        descText.setText(noteEntity.getDescrition());
+        descText.setText(note.getDescription());
 
         TextView timeText = rootView.findViewById(R.id.details__time);
-        timeText.setText(TimeUtils.getTimeInString(noteEntity.getDate()));
+        timeText.setText(TimeUtils.getTimeInString(note.getDate()));
 
         return rootView;
     }
@@ -73,7 +73,7 @@ public class DetailsFragment extends Fragment {
                 .commit();
     }
 
-    private NoteEntity getNoteById() {
+    private Note getNoteById() {
         for (int i = 0; i < noteEntities.size(); i++) {
             if (noteEntities.get(i).getId() == id) {
                 return noteEntities.get(i);

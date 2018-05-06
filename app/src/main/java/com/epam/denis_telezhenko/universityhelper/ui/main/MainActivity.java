@@ -11,20 +11,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule_of_bells.BellsScheduleActivity;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, EventsRecyclerViewAdapter.OnClickItem {
+
+    private static final String TAG = "MainActivity.TAG";
+    private DatabaseReference database;
+    private EventsRecyclerViewAdapter noteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +56,63 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        database = FirebaseDatabase.getInstance().getReference();
+
+        setDatabaseEventListener();
         setRecyclerView();
+    }
+
+    private void setDatabaseEventListener() {
+        /*ValueEventListener noteListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapsot : dataSnapshot.getChildren()) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        database.addValueEventListener(noteListener);*/
+        ChildEventListener noteListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                //Note note = dataSnapshot.getValue(Note.class);
+                //noteAdapter.addNote(note);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                //change data in recycler
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //delete from recycler
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                //data is ordered
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        database.addChildEventListener(noteListener);
     }
 
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.activity_main__recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new EventsRecyclerViewAdapter(StubUtils.getNotes(), this));
+        noteAdapter = new EventsRecyclerViewAdapter(null, this);
+        recyclerView.setAdapter(noteAdapter);
     }
 
     private void setDrawerAndToggle(Toolbar toolbar) {
