@@ -38,6 +38,9 @@ public class TimeUtils {
     }
 
     public static String getTimeInString(Date date) {
+        if (date == null) {
+            return "";
+        }
         String time = DateFormat.getTimeInstance(SimpleDateFormat.SHORT, new Locale("ua")).format(date);
         Log.d("time", time);
         return time;
