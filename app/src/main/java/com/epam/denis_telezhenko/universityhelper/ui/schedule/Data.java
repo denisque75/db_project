@@ -3,14 +3,25 @@ package com.epam.denis_telezhenko.universityhelper.ui.schedule;
 public class Data {
 
     private String subject;
+    private String type;
     private String teacher;
     private String time;
     private String room;
     private int id;
 
-    public Data(String subject, int id) {
+    public Data(String subject, String type, int id) {
         this.subject = subject;
+        this.type = type;
         this.id = id;
+    }
+
+    public Data(String subject, String teacher, String time, String room, int id, String type) {
+        this.subject = subject;
+        this.teacher = teacher;
+        this.time = time;
+        this.room = room;
+        this.id = id;
+        this.type = type;
     }
 
     public Data(String subject, String teacher, String time, String room, int id) {
@@ -59,5 +70,13 @@ public class Data {
 
     public int getId() {
         return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

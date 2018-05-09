@@ -3,6 +3,10 @@ package com.epam.denis_telezhenko.universityhelper.ui.schedule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
 
 public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -15,7 +19,7 @@ public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ScheduleFragment.newInstance(position);
+        return ScheduleFragment.newInstance(new DateUtils(position).getResultDate());
     }
 
     @Override

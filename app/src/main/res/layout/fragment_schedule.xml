@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="Понедельник 23.04.2018"
                 android:theme="@style/TextTitle"
                 android:textColor="@color/primaryTextColor"/>
         </LinearLayout>

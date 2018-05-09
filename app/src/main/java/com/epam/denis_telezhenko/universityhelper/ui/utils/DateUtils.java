@@ -2,6 +2,7 @@ package com.epam.denis_telezhenko.universityhelper.ui.utils;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,8 +44,18 @@ public class DateUtils{
         return getDateFormat().format(getFixedDate());
     }
 
+    private String getRefactorDate(){
+        StringBuilder res = new StringBuilder();
+        String [] str = getCurrentDateStr().split("");
+        res.append(str[1].toUpperCase());
+        for (int i = 2; i < str.length - 1; i++){
+            res.append(str[i]);
+        }
+        return res.toString();
+    }
+
     public String getResultDate(){
-        return getCurrentDateStr();
+        return getRefactorDate();
     }
 
 }

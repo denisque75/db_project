@@ -74,7 +74,9 @@ public class ExpScheduleAdapter extends BaseExpandableListAdapter {
             //Изменяем что-нибудь, если текущая Group скрыта
         }
         TextView textGroup = convertView.findViewById(R.id.schedule_main_subject_text_view);
+        TextView typeLesson = convertView.findViewById(R.id.schedule_type_text_view);
         textGroup.setText(scheduleFirstData.get(groupPosition).getSubject());
+        typeLesson.setText(scheduleFirstData.get(groupPosition).getType());
         return convertView;
     }
 
