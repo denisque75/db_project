@@ -40,6 +40,7 @@ public class DetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
+        //TODO: noteEntities save in MainActivity to DB and then read from DB here by id;
         noteEntities = StubUtils.getNotes();
         Note note = getNoteById();
 

@@ -12,8 +12,10 @@
         android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/main_card_item__text_linearLayout"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent">
 
         <TextView
@@ -30,7 +32,7 @@
 
         <TextView
             android:id="@+id/main_card_item__desc"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_default_margins"
             android:layout_marginBottom="8dp"
@@ -40,7 +42,9 @@
     </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/main_card_item__time_linearLayout"
+            android:layout_weight="0.42"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
