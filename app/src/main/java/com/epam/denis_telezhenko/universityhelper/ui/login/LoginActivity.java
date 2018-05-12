@@ -28,8 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextInputEditText password;
     private Button signIn;
 
-    private FirebaseAuth auth;
-    private DatabaseReference database;
+    private LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +39,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         findID();
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+        presenter = new LoginPresenter(auth, database);
+
         signIn.setOnClickListener(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
+
+        if (presenter.clientIsAuthAlready()) {
             startMainActivity();
         }
     }
@@ -77,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn(String email, String password) {
-        auth.signInWithEmailAndPassword(email, password)
+       /* auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -95,6 +98,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     }
                 });
-
+*/
     }
 }
