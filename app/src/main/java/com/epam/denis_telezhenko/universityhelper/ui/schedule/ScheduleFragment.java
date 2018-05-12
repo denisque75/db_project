@@ -19,7 +19,7 @@ public class ScheduleFragment extends Fragment{
     private View view;
     private TextView dateTextView;
     private String mDate;
-    private final static String TAG = "POS";
+    private final static String TAG = "schedule_fragment";
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -52,9 +52,6 @@ public class ScheduleFragment extends Fragment{
         dateTextView.setText(date);
     }
 
-//    private int getCurrentDay(){
-//        return 1;
-//    }
 
     private void setSchedule(ArrayList<Data> parentGroup, ArrayList<ArrayList<Data>> childGroup){
         ExpandableListView scheduleList = view.findViewById(R.id.schedule_list);

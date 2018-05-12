@@ -5,6 +5,14 @@
         android:title=""
         android:id="@+id/schedule_edit"
         android:icon="@drawable/ic_edit_white_24dp"
+        android:visible="false"
         app:showAsAction="always"
+        />
+    <item
+        android:title=""
+        android:id="@+id/schedule_back"
+        android:icon="@drawable/ic_done_24dp"
+        android:visible="false"
+        app:showAsAction="ifRoom"
         />
 </menu>

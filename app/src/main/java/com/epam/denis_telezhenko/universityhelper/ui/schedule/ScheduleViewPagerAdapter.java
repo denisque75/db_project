@@ -11,15 +11,20 @@ import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
 public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int numbers;
+    private boolean flag;
 
-    public ScheduleViewPagerAdapter(FragmentManager fm, int numbers) {
+    public ScheduleViewPagerAdapter(FragmentManager fm, int numbers, boolean flag) {
         super(fm);
         this.numbers = numbers;
+        this.flag = flag;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return ScheduleFragment.newInstance(new DateUtils(position).getResultDate());
+        if (flag)
+            return ScheduleFragment.newInstance(new DateUtils(position).getResultDate());
+        else
+            return EditScheduleFragment.newInstance(new DateUtils(position).getResultDate());
     }
 
     @Override

@@ -38,9 +38,10 @@
     <string name="title_activity_login">Login</string>
 
     <!--schedule screen-->
-    <string name="title_activity_schedule">Расписание пар</string>
+    <string name="schedule_title">Расписание пар</string>
     <string name="button_ok_text">ОК</string>
     <string name="schedule_group_text">Группа:</string>
+    <string name="edit_schedule_title">Редактирование</string>
 
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
