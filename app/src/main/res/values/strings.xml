@@ -33,6 +33,10 @@
     <string name="alarm_is_on">Включен</string>
     <string name="choose_date">Выбрать дату</string>
     <string name="choose_time">Выбрать время</string>
+    <string name="log_out">Log out</string>
+    <string name="are_you_sure">Вы уверены?</string>
+    <string name="cancel">Отменить</string>
+    <string name="submit">Выйти</string>
 
     <!--login screen-->
     <string name="title_activity_login">Login</string>

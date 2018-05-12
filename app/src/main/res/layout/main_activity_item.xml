@@ -2,18 +2,25 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:layout_margin="8dp">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/main_card_item__text_linearLayout"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/main_card_item__title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_default_margins"
             android:layout_marginEnd="8dp"
@@ -21,51 +28,36 @@
             android:maxLines="1"
             android:text="@string/note_title_stub"
             android:textColor="@color/primaryDarkColor"
-            android:textSize="@dimen/main_card_title_textSize"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_for_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="@dimen/main_card_title_textSize" />
 
         <TextView
             android:id="@+id/main_card_item__desc"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_margin="@dimen/card_default_margins"
             android:layout_marginBottom="8dp"
             android:maxLines="3"
             android:ellipsize="end"
-            android:text="@string/note_desc_stub"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline_for_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_card_item__title" />
+            android:text="@string/note_desc_stub" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/main_card_item__time"
+        <LinearLayout
+            android:id="@+id/main_card_item__time_linearLayout"
+            android:layout_weight="0.42"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+            android:id="@+id/main_card_item__time"
+            android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:gravity="center"
             android:text="@string/note_time_stub"
-            android:textColor="@color/timeColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline_for_desc"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/timeColor" />
+        </LinearLayout>
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline_for_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.7" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline_for_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
-
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

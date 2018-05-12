@@ -1,27 +1,32 @@
 package com.epam.denis_telezhenko.universityhelper.ui.main.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.NoteEntity;
+import com.epam.denis_telezhenko.universityhelper.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecyclerViewAdapter.ViewHolder> {
-    private List<NoteEntity> noteEntities;
+    private List<Note> noteEntities;
     private OnClickItem onClickItem;
 
-    public EventsRecyclerViewAdapter(List<NoteEntity> noteEntities,OnClickItem onClickItem){
+    public EventsRecyclerViewAdapter(List<Note> noteEntities, OnClickItem onClickItem){
         this.noteEntities = noteEntities;
         this.onClickItem = onClickItem;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
+        private static final String TAG = "RecyclerViewMainAdapter";
         TextView title;
         TextView description;
         TextView time;
@@ -33,20 +38,20 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
             time = itemView.findViewById(R.id.main_card_item__time);
         }
 
-        void onBindView(OnClickItem onClickItem, NoteEntity note){
+        void onBindView(OnClickItem onClickItem, Note note){
+            if (note.getDate() == null) {
+                LinearLayout layout = itemView.findViewById(R.id.main_card_item__time_linearLayout);
+                LinearLayout.LayoutParams params =
+                        new LinearLayout.LayoutParams(0, 0);
+                params.weight = 0;
+                layout.setLayoutParams(params);
+            }
             title.setText(note.getTitle());
-            description.setText(note.getDescrition());
+            description.setText(note.getDescription());
             time.setText(TimeUtils.getTimeInString(note.getDate()));
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickItem.clickItem(note.getId());
-                }
-            });
+            Log.d(TAG, "onBindView: " + note);
+            itemView.setOnClickListener(v -> onClickItem.clickItem(note.getId()));
         }
-
-
 
     }
 
@@ -64,7 +69,23 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
 
     @Override
     public int getItemCount() {
+        if (noteEntities == null) {
+            return 0;
+        }
         return noteEntities.size();
+    }
+
+    public void addNote(Note note) {
+        if (noteEntities == null) {
+            noteEntities = new ArrayList<>();
+        }
+        noteEntities.add(note);
+        notifyItemChanged(noteEntities.size() - 1);
+    }
+
+    public void setNoteEntities(List<Note> noteEntities) {
+        this.noteEntities = noteEntities;
+        notifyDataSetChanged();
     }
 
     public interface OnClickItem {
