@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui.details;
+package com.epam.denis_telezhenko.universityhelper.ui.details.view;
 
 import android.app.Activity;
 import android.content.Intent;

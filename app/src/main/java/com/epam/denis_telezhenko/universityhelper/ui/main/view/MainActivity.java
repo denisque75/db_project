@@ -13,12 +13,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
-import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.details.view.DetailsActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.main.MainPresenter;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;

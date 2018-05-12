@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui.details;
+package com.epam.denis_telezhenko.universityhelper.ui.details.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,14 +13,17 @@ import android.widget.TextView;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
+import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsPresenter;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.List;
 
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends Fragment implements DetailsView {
     public static final String TAG = "details_fragment";
     private List<Note> noteEntities;
     private long id;
+
+    private DetailsPresenter presenter;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -39,9 +42,13 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
+        presenter = new DetailsPresenter(this);
+
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
         //TODO: noteEntities save in MainActivity to DB and then read from DB here by id;
-        noteEntities = StubUtils.getNotes();
+        //noteEntities = StubUtils.getNotes();
+        presenter.showNoteById(id);
+
         Note note = getNoteById();
 
         TextView titleText = rootView.findViewById(R.id.details__title);

@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui.details;
+package com.epam.denis_telezhenko.universityhelper.ui.details.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
