@@ -1,7 +1,6 @@
 package com.epam.denis_telezhenko.universityhelper.ui.main.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.ArrayList;

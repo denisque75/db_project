@@ -1,7 +1,8 @@
-package com.epam.denis_telezhenko.universityhelper.ui.main;
+package com.epam.denis_telezhenko.universityhelper.ui.main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,36 +12,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsActivity;
-import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.main.MainPresenter;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule_of_bells.BellsScheduleActivity;
-import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, EventsRecyclerViewAdapter.OnClickItem {
+public class MainActivity extends AppCompatActivity implements MainListView,
+        NavigationView.OnNavigationItemSelectedListener,
+        EventsRecyclerViewAdapter.OnClickItem {
 
     private static final String TAG = "MainActivity.TAG";
-    private DatabaseReference database;
-    private String uid;
+
+    private MainPresenter presenter;
+
     private EventsRecyclerViewAdapter noteAdapter;
 
     @Override
@@ -51,13 +47,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CreateNoteActivity.class);
-                startActivity(intent);
-            }
-        });
+        setFABListener(fab);
 
         setDrawerAndToggle(toolbar);
 
@@ -65,31 +55,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        uid = auth.getCurrentUser().getUid();
-        database = FirebaseDatabase.getInstance().getReference();
+        String uid = auth.getCurrentUser().getUid();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
-        setDatabaseEventListener();
+        presenter = new MainPresenter(this, database);
+
+        presenter.setDatabaseEventListener(uid);
         setRecyclerView();
-    }
-
-    private void setDatabaseEventListener() {
-        ValueEventListener noteListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Note> noteList = new ArrayList<>();
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    Log.d("FirebaseNote", data.toString());
-                    noteList.add(data.getValue(Note.class));
-                }
-                noteAdapter.setNoteEntities(noteList);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-        database.child(Constants.NOTES_NODE).child(uid).addValueEventListener(noteListener);
     }
 
     private void setRecyclerView() {
@@ -97,6 +69,11 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         noteAdapter = new EventsRecyclerViewAdapter(null, this);
         recyclerView.setAdapter(noteAdapter);
+    }
+
+    @Override
+    public void setEntitiesToAdapter(List<Note> noteList) {
+        noteAdapter.setNoteEntities(noteList);
     }
 
     private void setDrawerAndToggle(Toolbar toolbar) {
@@ -119,7 +96,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -153,4 +130,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void setFABListener(FloatingActionButton fab) {
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, CreateNoteActivity.class);
+            startActivity(intent);
+        });
+    }
 }

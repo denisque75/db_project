@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui.main;
+package com.epam.denis_telezhenko.universityhelper.ui.main.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,10 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.login.view.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LogoutDialogFragment extends DialogFragment {

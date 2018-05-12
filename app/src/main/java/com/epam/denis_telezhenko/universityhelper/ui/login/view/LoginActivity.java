@@ -1,27 +1,22 @@
-package com.epam.denis_telezhenko.universityhelper.ui.login;
+package com.epam.denis_telezhenko.universityhelper.ui.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.ui.main.MainActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.epam.denis_telezhenko.universityhelper.ui.login.LoginPresenter;
+import com.epam.denis_telezhenko.universityhelper.ui.main.view.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener{
 
     private static final String TAG = "LOGIN.ACTIVITY";
     private TextInputEditText login;
@@ -43,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseAuth auth = FirebaseAuth.getInstance();
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
-        presenter = new LoginPresenter(auth, database);
+        presenter = new LoginPresenter(this, auth, database);
 
         signIn.setOnClickListener(this);
     }
@@ -57,7 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void startMainActivity() {
+    @Override
+    public void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -69,35 +65,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signIn = findViewById(R.id.login_button);
     }
 
+    @Override
+    public void showFailedToast(String message) {
+        Toast.makeText(LoginActivity.this, message,
+                Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.login_button){
             //make validation
-            finish();
+            presenter.signIn(login.getText().toString(), password.getText().toString());
         }
-
-    }
-
-    private void signIn(String email, String password) {
-       /* auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = auth.getCurrentUser();
-                            startMainActivity();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.d(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-*/
     }
 }

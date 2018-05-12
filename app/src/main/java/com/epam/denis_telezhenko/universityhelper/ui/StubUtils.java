@@ -1,6 +1,6 @@
 package com.epam.denis_telezhenko.universityhelper.ui;
 
-import com.epam.denis_telezhenko.universityhelper.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 
 import java.util.ArrayList;

@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
-        tools:context="com.epam.denis_telezhenko.universityhelper.ui.login.LoginActivity">
+        tools:context="com.epam.denis_telezhenko.universityhelper.ui.login.view.LoginActivity">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"

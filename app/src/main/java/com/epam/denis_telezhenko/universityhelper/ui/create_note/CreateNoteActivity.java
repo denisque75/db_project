@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.BaseDatePicker;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.BaseTimePicker;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerCreateNoteFragment;
@@ -24,10 +24,6 @@ import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class CreateNoteActivity extends AppCompatActivity implements OnPickerCompleteListener {
     public static final String RESULT = "result";

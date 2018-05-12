@@ -1,25 +1,45 @@
 package com.epam.denis_telezhenko.universityhelper.ui.login;
 
-import com.epam.denis_telezhenko.universityhelper.ui.CheckAuth;
+import com.epam.denis_telezhenko.universityhelper.core.auth.AuthCallback;
+import com.epam.denis_telezhenko.universityhelper.core.auth.Authorization;
+import com.epam.denis_telezhenko.universityhelper.core.services.auth.AuthService;
+import com.epam.denis_telezhenko.universityhelper.ui.BasePresenter;
+import com.epam.denis_telezhenko.universityhelper.core.auth.CheckAuth;
+import com.epam.denis_telezhenko.universityhelper.ui.login.view.LoginView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class LoginPresenter implements CheckAuth {
+public class LoginPresenter extends BasePresenter<LoginView> implements AuthCallback,
+        CheckAuth, Authorization {
+    private static final String TAG = "LoginPresenter";
     private FirebaseAuth auth;
     private DatabaseReference reference;
 
-    public LoginPresenter(FirebaseAuth auth, DatabaseReference reference) {
+    public LoginPresenter(LoginView loginView, FirebaseAuth auth, DatabaseReference reference) {
+        super(loginView);
         this.auth = auth;
         this.reference = reference;
-
     }
 
 
     @Override
     public boolean clientIsAuthAlready() {
-        if (auth.getCurrentUser() != null) {
-            return true;
-        }
-        return false;
+        return auth.getCurrentUser() != null;
+    }
+
+    @Override
+    public void signIn(String email, String pass) {
+        // TODO: 12.05.18   check Internet access
+        AuthService.signInUser(auth, this, email, pass);
+    }
+
+    @Override
+    public void failAuth() {
+        getView().showFailedToast("Authentication failed");
+    }
+
+    @Override
+    public void successAuth() {
+        getView().startMainActivity();
     }
 }

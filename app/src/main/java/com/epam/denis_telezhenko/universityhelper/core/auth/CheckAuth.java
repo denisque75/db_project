@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.ui;
+package com.epam.denis_telezhenko.universityhelper.core.auth;
 
 public interface CheckAuth {
 

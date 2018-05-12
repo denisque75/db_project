@@ -1,4 +1,4 @@
-package com.epam.denis_telezhenko.universityhelper.entity;
+package com.epam.denis_telezhenko.universityhelper.core.entity;
 
 public class User {
     private String email;
