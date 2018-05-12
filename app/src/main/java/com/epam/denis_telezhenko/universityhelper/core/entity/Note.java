@@ -1,33 +1,40 @@
 package com.epam.denis_telezhenko.universityhelper.core.entity;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity
 public class Note {
+
+    @PrimaryKey
     private long id;
     private String title;
-    private String group;
+    private boolean isGlobal;
     private String description;
     private Date date; //if date == null it means that it isn't remind
 
     public Note() {
     }
 
-    public Note(String title, String group, String description) {
+    @Ignore
+    public Note(String title, String description) {
         this.title = title;
-        this.group = group;
         this.description = description;
+    }
+
+    public boolean isGlobal() {
+        return isGlobal;
+    }
+
+    public void setGlobal(boolean global) {
+        isGlobal = global;
     }
 
     public long getId() {
         return id;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
     }
 
     public void setId(long id) {

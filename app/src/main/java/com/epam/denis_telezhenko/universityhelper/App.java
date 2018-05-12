@@ -14,7 +14,7 @@ public class App extends Application {
         database = AppDatabase.getAppDatabase(this);
     }
 
-    public AppDatabase getResponseDao() {
+    public AppDatabase getDatabase() {
         return database;
     }
 }

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface DataFromDBCallback<T> {
 
-    void newDataFromDB(List<T> data);
+    void newDataFromServer(List<T> data);
 }

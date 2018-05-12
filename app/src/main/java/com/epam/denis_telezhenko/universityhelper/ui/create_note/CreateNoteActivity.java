@@ -84,11 +84,13 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
         Note note = new Note();
         note.setTitle(title.getText().toString().trim());
         note.setDescription(desc.getText().toString().trim());
+        note.setId(System.currentTimeMillis()/100);
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         reference.child("notes").child(uid).push().
                 setValue(note);
+        finish();
         //todo: save to room
     }
 

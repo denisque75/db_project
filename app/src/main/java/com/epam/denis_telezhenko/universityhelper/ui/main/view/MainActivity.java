@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.epam.denis_telezhenko.universityhelper.App;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
 import com.epam.denis_telezhenko.universityhelper.ui.create_note.CreateNoteActivity;
@@ -57,10 +58,17 @@ public class MainActivity extends AppCompatActivity implements MainListView,
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
-        presenter = new MainPresenter(this, database);
+        presenter = new MainPresenter(this, database, ((App)getApplication()).getDatabase().getNoteDao());
+        presenter.getIsDataSavedToDb().observe(this, this::dataIsSaved);
 
         presenter.setDatabaseEventListener(uid);
         setRecyclerView();
+    }
+
+    private void dataIsSaved(Boolean isSaved) {
+        if (isSaved != null) {
+            presenter.showNotes();
+        }
     }
 
     private void setRecyclerView() {

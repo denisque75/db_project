@@ -27,7 +27,7 @@ public class ReadFromFirebase {
                     Log.d("FirebaseNote", data.toString());
                     noteList.add(data.getValue(Note.class));
                 }
-                callback.newDataFromDB(noteList);
+                callback.newDataFromServer(noteList);
             }
 
             @Override
