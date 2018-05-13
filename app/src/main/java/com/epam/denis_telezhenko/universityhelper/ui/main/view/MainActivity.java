@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.epam.denis_telezhenko.universityhelper.App;
 import com.epam.denis_telezhenko.universityhelper.R;
@@ -23,6 +24,7 @@ import com.epam.denis_telezhenko.universityhelper.ui.main.MainPresenter;
 import com.epam.denis_telezhenko.universityhelper.ui.main.adapter.EventsRecyclerViewAdapter;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule.ScheduleActivity;
 import com.epam.denis_telezhenko.universityhelper.ui.schedule_of_bells.BellsScheduleActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -61,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements MainListView,
         presenter = new MainPresenter(this, database, ((App)getApplication()).getDatabase().getNoteDao());
         presenter.getIsDataSavedToDb().observe(this, this::dataIsSaved);
 
-        presenter.setDatabaseEventListener(uid);
+        String group = getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getString(Constants.GROUP, "");
+        presenter.setDatabaseEventListener(uid, group);
         setRecyclerView();
     }
 
@@ -89,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements MainListView,
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        NavigationView nav = findViewById(R.id.nav_view);
+        TextView groupName = nav.getHeaderView(0).findViewById(R.id.icon_group);
+        groupName.setText(getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE)
+                .getString(Constants.GROUP, "КУ-31"));
     }
 
     @Override

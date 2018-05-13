@@ -20,6 +20,7 @@ import com.epam.denis_telezhenko.universityhelper.ui.dialog.DatePickerEditNoteFr
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.OnPickerCompleteListener;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimeDialogEditNoteFragment;
 import com.epam.denis_telezhenko.universityhelper.ui.dialog.TimePickerCreateNoteFragment;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,10 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+        }
+
+        if (getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getBoolean(Constants.IS_ADMIN, false)) {
+            findViewById(R.id.create_note__asAdmin_cart).setVisibility(View.VISIBLE);
         }
 
         title = findViewById(R.id.new_note__title);
@@ -88,10 +93,14 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        reference.child("notes").child(uid).push().
-                setValue(note);
+        if (getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getBoolean(Constants.IS_ADMIN, false)) {
+            String group = getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getString(Constants.GROUP, "waste");
+            reference.child(Constants.NOTES_NODE).child(group).push().setValue(note);
+        } else {
+            reference.child(Constants.NOTES_NODE).child(uid).push().
+                    setValue(note);
+        }
         finish();
-        //todo: save to room
     }
 
     private void changeAlarmState(RadioGroup radioGroup, int i) {

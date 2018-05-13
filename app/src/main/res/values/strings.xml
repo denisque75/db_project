@@ -48,5 +48,6 @@
 
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
+    <string name="asAdmin">Как староста</string>
 
 </resources>

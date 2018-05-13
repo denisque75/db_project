@@ -28,8 +28,8 @@ public class MainPresenter extends BasePresenter<MainListView> implements DataFr
         isDataSavedToDb = new MutableLiveData<>();
     }
 
-    public void setDatabaseEventListener(String uid) {
-        ReadFromFirebase.readNotes(this,database, uid);
+    public void setDatabaseEventListener(String uid, String group) {
+        ReadFromFirebase.readNotes(this,database, uid, group);
     }
 
     @Override

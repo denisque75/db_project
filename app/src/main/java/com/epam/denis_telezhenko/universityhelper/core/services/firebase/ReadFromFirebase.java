@@ -22,7 +22,7 @@ public class ReadFromFirebase {
     private static final String TAG = "ReadFromFirebase";
 
     public static void readNotes(DataFromDBCallback<Note> callback,
-                                 DatabaseReference database, String uid) {
+                                 DatabaseReference database, String uid, String group) {
         ValueEventListener noteListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -40,6 +40,7 @@ public class ReadFromFirebase {
             }
         };
         database.child(Constants.NOTES_NODE).child(uid).addValueEventListener(noteListener);
+        database.child(Constants.NOTES_NODE).child(group).addListenerForSingleValueEvent(noteListener);
     }
 
     public static void readSchedule(MutableLiveData<List<Data>> scheduleData,

@@ -1,6 +1,7 @@
 package com.epam.denis_telezhenko.universityhelper.ui.login.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.epam.denis_telezhenko.universityhelper.R;
+import com.epam.denis_telezhenko.universityhelper.core.entity.User;
 import com.epam.denis_telezhenko.universityhelper.ui.login.LoginPresenter;
 import com.epam.denis_telezhenko.universityhelper.ui.main.view.MainActivity;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,5 +80,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
             //make validation
             presenter.signIn(login.getText().toString(), password.getText().toString());
         }
+    }
+
+    @Override
+    public void saveUser(User user) {
+        SharedPreferences.Editor editor = getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).edit();
+        editor.putString(Constants.USER_NAME, user.getUid());
+        editor.putString(Constants.EMAIL, user.getEmail());
+        editor.putBoolean(Constants.IS_ADMIN, user.isAdmin());
+        editor.putString(Constants.GROUP, user.getGroup());
+        editor.apply();
     }
 }

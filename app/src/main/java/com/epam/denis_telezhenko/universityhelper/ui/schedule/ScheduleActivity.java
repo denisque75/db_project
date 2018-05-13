@@ -21,6 +21,7 @@ import com.epam.denis_telezhenko.universityhelper.App;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.core.dao.ScheduleDao;
 import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.Data;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,7 +55,9 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleDialo
 
         presenter = new SchedulePresenter(database, dao);
 
-        presenter.returnScheduleByGroup("КУ-31");
+        String groupName = getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE)
+                .getString(Constants.GROUP, "КУ-31");
+        presenter.returnScheduleByGroup(groupName);
         presenter.getLiveData().observe(this, this::saveToDB);
         presenter.getIsSaved().observe(this, this::openFragments);
 
