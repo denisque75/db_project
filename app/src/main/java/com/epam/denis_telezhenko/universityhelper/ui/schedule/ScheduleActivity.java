@@ -15,14 +15,28 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
+import android.widget.Toast;
 
-public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
+import com.epam.denis_telezhenko.universityhelper.App;
+import com.epam.denis_telezhenko.universityhelper.R;
+import com.epam.denis_telezhenko.universityhelper.core.dao.ScheduleDao;
+import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.Data;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
+public class ScheduleActivity extends AppCompatActivity implements ScheduleDialogActivity.OnGroupClicked,
+        MenuItem.OnMenuItemClickListener {
 
     private FloatingActionButton floatingBut;
     private TextView entranceTextView;
     private final static int WEEK_COUNT = 7;
+
+    private List<Data> dataList;
+
+    private SchedulePresenter presenter;
 
     private void findID(){
         floatingBut = findViewById(R.id.schedule_floating_button);
@@ -35,6 +49,14 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
         setContentView(R.layout.activity_schedule);
 
         findID();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        ScheduleDao dao = ((App) getApplication()).getDatabase().getScheduleDao();
+
+        presenter = new SchedulePresenter(database, dao);
+
+        presenter.returnScheduleByGroup("КУ-31");
+        presenter.getLiveData().observe(this, this::saveToDB);
+        presenter.getIsSaved().observe(this, this::openFragments);
 
         Toolbar toolbar = findViewById(R.id.schedule_toolbar);
         setSupportActionBar(toolbar);
@@ -46,13 +68,33 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
         }
 
         floatingBut.setOnClickListener(v -> {
-            ScheduleDialogActivity sda = new ScheduleDialogActivity(ScheduleActivity.this, entranceTextView);
+            ScheduleDialogActivity sda =
+                    new ScheduleDialogActivity(ScheduleActivity.this, entranceTextView, this);
             sda.show();
         });
 
-        pageSwitcher();
-
     }
+
+    @Override
+    public void onGroupClicked(String group) {
+        presenter.returnScheduleByGroup(group);
+    }
+
+    private void openFragments(Boolean aBoolean) {
+        if (aBoolean) {
+            pageSwitcher();
+        } else {
+            Toast.makeText(getApplicationContext(), "See Internet Connection!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void saveToDB(List<Data> data) {
+        if (data != null) {
+            dataList = data;
+            presenter.saveDataAndShow(data);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_schadule_toolbar, menu);
@@ -69,7 +111,7 @@ public class ScheduleActivity extends AppCompatActivity implements MenuItem.OnMe
 
     private void pageSwitcher() {
         ViewPager viewPager = findViewById(R.id.schedule_viewpager);
-        ScheduleViewPagerAdapter adapter = new ScheduleViewPagerAdapter(getSupportFragmentManager(), WEEK_COUNT);
+        ScheduleViewPagerAdapter adapter = new ScheduleViewPagerAdapter(getSupportFragmentManager(), WEEK_COUNT, dataList);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

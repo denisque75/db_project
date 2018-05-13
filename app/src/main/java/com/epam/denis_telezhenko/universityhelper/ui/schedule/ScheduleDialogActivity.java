@@ -25,10 +25,12 @@ public class ScheduleDialogActivity extends Dialog implements View.OnClickListen
     private String group;
 
     private TextView textView;
+    private OnGroupClicked onGroupClicked;
 
-    ScheduleDialogActivity(@NonNull Context context, TextView textView) {
+    ScheduleDialogActivity(@NonNull Context context, TextView textView, OnGroupClicked clicked) {
         super(context);
         this.textView = textView;
+        this.onGroupClicked = clicked;
     }
 
     private String getGroup() {
@@ -83,6 +85,12 @@ public class ScheduleDialogActivity extends Dialog implements View.OnClickListen
     public void onClick(View v) {
         textView.setText(getGroup());
         dismiss();
+        onGroupClicked.onGroupClicked(getGroup());
         Toast.makeText(getContext(),textView.getText().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    public interface OnGroupClicked {
+
+        void onGroupClicked(String group);
     }
 }

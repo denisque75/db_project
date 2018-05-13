@@ -1,7 +1,7 @@
 package com.epam.denis_telezhenko.universityhelper.ui.schedule;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,26 +9,36 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.epam.denis_telezhenko.universityhelper.App;
 import com.epam.denis_telezhenko.universityhelper.R;
-import com.epam.denis_telezhenko.universityhelper.ui.utils.DateUtils;
+import com.epam.denis_telezhenko.universityhelper.core.dao.ScheduleDao;
+import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.Data;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Days;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ScheduleFragment extends Fragment{
+public class ScheduleFragment extends Fragment {
 
     private View view;
     private TextView dateTextView;
     private String mDate;
     private final static String TAG = "POS";
+    private final static String SCHEDULE = "Schedule";
+
+    private ScheduleDbPresenter presenter;
 
     public ScheduleFragment() {
         // Required empty public constructor
     }
 
-    public static ScheduleFragment newInstance(String date) {
+    public static ScheduleFragment newInstance(String date, List<Data> data) {
         ScheduleFragment fragment = new ScheduleFragment();
         Bundle args = new Bundle();
         args.putString(TAG, date);
+        args.putParcelableArrayList(SCHEDULE, (ArrayList<? extends Parcelable>) data);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,9 +51,25 @@ public class ScheduleFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_schedule, container, false);
         findID();
+
+        List<Data> data = getArguments().getParcelableArrayList(SCHEDULE);
+        for (Data sched : data) {
+            if (getArguments().getString(TAG).contains(sched.getDayName())) {
+                setSchedule(sched);
+            }
+        }
+
         setDate();
-        test();
         return view;
+    }
+
+    private String getDateName(String key) {
+        for (Days day : Days.values()) {
+            if (key.contains(day.toString())) {
+                return day.toString();
+            }
+        }
+        return "Воскресенье";
     }
 
     private void setDate(){
@@ -56,15 +82,12 @@ public class ScheduleFragment extends Fragment{
 //        return 1;
 //    }
 
-    private void setSchedule(ArrayList<Data> parentGroup, ArrayList<ArrayList<Data>> childGroup){
+    private void setSchedule(Data dataList){
         ExpandableListView scheduleList = view.findViewById(R.id.schedule_list);
-        if (parentGroup != null) {
-            scheduleList.setAdapter(new ExpScheduleAdapter(getContext(), parentGroup, childGroup));
-        }
+        scheduleList.setAdapter(new ExpScheduleAdapter(getContext(), dataList));
     }
 
-
-    private void test(){
+/*private void test(){
         ArrayList<Data> firstData = new ArrayList<>();
         ArrayList<ArrayList<Data>> secondData = new ArrayList<>();
         for (int i = 1; i < 5; i++){
@@ -111,5 +134,5 @@ public class ScheduleFragment extends Fragment{
         firstData.add(new Data("Межфакультетская лекция", "ЛЗ", 5));
 
         setSchedule(firstData, secondData);
-    }
+    }*/
 }

@@ -7,10 +7,14 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.epam.denis_telezhenko.universityhelper.core.dao.NoteDao;
+import com.epam.denis_telezhenko.universityhelper.core.dao.ScheduleDao;
+import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.ClassInfo;
+import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.Data;
 import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.entity.schedule.Day;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.DataConverter;
 
-@Database(entities = Note.class, version = 1, exportSchema = false)
+@Database(entities = {Note.class, Data.class, Day.class}, version = 2, exportSchema = false)
 @TypeConverters(DataConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "student-helper-database";
@@ -29,5 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract NoteDao getNoteDao();
+
+    public abstract ScheduleDao getScheduleDao();
 
 }
