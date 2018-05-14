@@ -15,9 +15,8 @@ import android.widget.Toast;
 import com.epam.denis_telezhenko.universityhelper.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class ScheduleDialogActivity extends Dialog implements View.OnClickListener {
+public class GroupDialogActivity extends Dialog implements View.OnClickListener {
 
     private Button okButton;
     private Spinner groupSpinner;
@@ -26,7 +25,7 @@ public class ScheduleDialogActivity extends Dialog implements View.OnClickListen
 
     private TextView textView;
 
-    ScheduleDialogActivity(@NonNull Context context, TextView textView) {
+    GroupDialogActivity(@NonNull Context context, TextView textView) {
         super(context);
         this.textView = textView;
     }
@@ -40,14 +39,14 @@ public class ScheduleDialogActivity extends Dialog implements View.OnClickListen
     }
 
     private void findID(){
-        okButton = findViewById(R.id.schedule_dialog_button);
-        groupSpinner = findViewById(R.id.schedule_dialog_spinner);
+        okButton = findViewById(R.id.dialog_group_button);
+        groupSpinner = findViewById(R.id.dialog_group_spinner);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.schedule_dialog);
+        setContentView(R.layout.dialog_schedule_group);
         findID();
         okButton.setOnClickListener(this);
 

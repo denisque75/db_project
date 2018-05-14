@@ -55,6 +55,7 @@
                 <!--android:nestedScrollingEnabled="true"/>-->
         <!--</android.support.v4.widget.NestedScrollView>-->
 
+    <include layout="@layout/view_schedule_edit"/>
 
     </android.support.v7.widget.CardView>
 

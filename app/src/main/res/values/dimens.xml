@@ -25,9 +25,14 @@
 
     <!--schedule layout-->
     <dimen name="schedule_appbar_height">200dp</dimen>
-    <dimen name="schedule_flouting_button_size">50dp</dimen>
+    <dimen name="schedule_fab_size">50dp</dimen>
     <dimen name="schedule_dialog_spinner_height">40dp</dimen>
     <dimen name="schedule_dialog_spinner_width">250dp</dimen>
     <dimen name="schedule_group_entrance_text_size">20sp</dimen>
     <dimen name="schedule_info_height">50dp</dimen>
+    <dimen name="dialog_margin">8dp</dimen>
+    <dimen name="dialog_text_size">17sp</dimen>
+    <dimen name="dialog_title_size">22sp</dimen>
+    <dimen name="dialog_radio_button_margin">85dp</dimen>
+    <dimen name="box_edit_width">55dp</dimen>
 </resources>

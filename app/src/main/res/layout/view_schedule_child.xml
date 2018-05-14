@@ -4,30 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginStart="8dp">
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-        <!--<TextView-->
-            <!--style="@style/ScheduleStaticTextView"-->
-            <!--android:text="Предмет" />-->
-
-        <!--<TextView-->
-            <!--style="@style/ScheduleStaticTextView"-->
-            <!--android:text="Преподователь" />-->
-
-        <!--<TextView-->
-            <!--style="@style/ScheduleStaticTextView"-->
-            <!--android:text="Время" />-->
-
-        <!--<TextView-->
-            <!--style="@style/ScheduleStaticTextView"-->
-            <!--android:layout_weight="1.2"-->
-            <!--android:text="Место" />-->
-
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

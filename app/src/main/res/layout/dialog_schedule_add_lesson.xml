@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dialog_add_lesson_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/DialogTextTitle"
+        android:layout_marginTop="16dp"
+        android:text="@string/dialog_add_lesson_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_time"
+        style="@style/DialogText"
+        android:text="@string/dialog_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_add_lesson_toolbar" />
+
+    <Spinner
+        android:id="@+id/dialog_time_spinner"
+        android:layout_width="@dimen/schedule_dialog_spinner_width"
+        android:layout_height="@dimen/schedule_dialog_spinner_height"
+        style="@style/DialogSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_time" />
+
+    <TextView
+        android:id="@+id/dialog_subject"
+        style="@style/DialogText"
+        android:text="@string/dialog_subject"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_time_spinner" />
+
+    <Spinner
+        android:id="@+id/dialog_subject_spinner"
+        android:layout_width="@dimen/schedule_dialog_spinner_width"
+        android:layout_height="@dimen/schedule_dialog_spinner_height"
+        style="@style/DialogSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_subject" />
+
+    <TextView
+        android:id="@+id/dialog_teacher"
+        style="@style/DialogText"
+        android:text="@string/dialog_teacher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_subject_spinner" />
+
+    <Spinner
+        android:id="@+id/dialog_teacher_spinner"
+        android:layout_width="@dimen/schedule_dialog_spinner_width"
+        android:layout_height="@dimen/schedule_dialog_spinner_height"
+        style="@style/DialogSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_teacher" />
+    <TextView
+        android:id="@+id/dialog_room"
+        style="@style/DialogText"
+        android:text="@string/dialog_room"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_teacher_spinner" />
+
+    <Spinner
+        android:id="@+id/dialog_room_spinner"
+        android:layout_width="@dimen/schedule_dialog_spinner_width"
+        android:layout_height="@dimen/schedule_dialog_spinner_height"
+        style="@style/DialogSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_room" />
+
+    <RadioGroup
+        android:id="@+id/dialog_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_room_spinner">
+
+    <RadioButton
+        android:id="@+id/dialog_type1_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:text="@string/dialog_type1"
+        android:checked="true"
+        app:layout_constraintStart_toStartOf="parent"
+ />
+
+    <RadioButton
+        android:id="@+id/dialog_type2_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:text="@string/dialog_type2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_room_spinner" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/dialog_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dialog_margin"
+        android:text="@string/button_ok_text"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_radio_group" />
+
+</android.support.constraint.ConstraintLayout>

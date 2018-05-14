@@ -40,10 +40,17 @@
     <!--schedule screen-->
     <string name="schedule_title">Расписание пар</string>
     <string name="button_ok_text">ОК</string>
-    <string name="schedule_group_text">Группа:</string>
+    <string name="dialog_group_title">Группа:</string>
     <string name="edit_schedule_title">Редактирование</string>
+    <string name="dialog_add_lesson_title">Добавить</string>
 
     <!--schedule of bells screen-->
     <string name="title_activity_bells_schedule">Schedule of Bells</string>
+    <string name="dialog_time">Время:</string>
+    <string name="dialog_subject">Предмет:</string>
+    <string name="dialog_teacher">Преподаватель</string>
+    <string name="dialog_room">Аудитория:</string>
+    <string name="dialog_type1">Практика</string>
+    <string name="dialog_type2">Лекция</string>
 
 </resources>

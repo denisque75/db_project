@@ -64,7 +64,7 @@ public class ExpScheduleAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) scheduleContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.schedule_custom_group_view, null);
+            convertView = inflater.inflate(R.layout.view_schedule_parent, null);
         }
 
         if (isExpanded){
@@ -85,7 +85,7 @@ public class ExpScheduleAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) scheduleContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = Objects.requireNonNull(inflater).inflate(R.layout.schedule_custom_child_view, null);
+            convertView = Objects.requireNonNull(inflater).inflate(R.layout.view_schedule_child, null);
         }
 
         TextView subject = convertView.findViewById(R.id.schedule_subject_text_view);

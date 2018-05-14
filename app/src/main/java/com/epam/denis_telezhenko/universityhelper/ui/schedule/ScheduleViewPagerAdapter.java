@@ -16,7 +16,7 @@ public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
     public ScheduleViewPagerAdapter(FragmentManager fm, int numbers, boolean flag) {
         super(fm);
         this.numbers = numbers;
-        this.flag = flag;
+        this.flag = flag;;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
         if (flag)
             return ScheduleFragment.newInstance(new DateUtils(position).getResultDate());
         else
-            return EditScheduleFragment.newInstance(new DateUtils(position).getResultDate());
+            return EditScheduleFragment.newInstance(new DateUtils(position).getResultDate(), position);
     }
 
     @Override
@@ -32,6 +32,8 @@ public class ScheduleViewPagerAdapter extends FragmentStatePagerAdapter {
         return numbers;
     }
 
-
-
+    @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
+    }
 }

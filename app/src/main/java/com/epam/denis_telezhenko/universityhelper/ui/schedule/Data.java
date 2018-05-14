@@ -1,6 +1,11 @@
 package com.epam.denis_telezhenko.universityhelper.ui.schedule;
 
-public class Data {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Data implements Serializable {
 
     private String subject;
     private String type;
@@ -8,6 +13,9 @@ public class Data {
     private String time;
     private String room;
     private int id;
+
+    public Data() {
+    }
 
     public Data(String subject, String type, int id) {
         this.subject = subject;
