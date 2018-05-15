@@ -54,6 +54,8 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
 
         if (getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getBoolean(Constants.IS_ADMIN, false)) {
             findViewById(R.id.create_note__asAdmin_cart).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.create_note__asAdmin_cart).setVisibility(View.GONE);
         }
 
         title = findViewById(R.id.new_note__title);
