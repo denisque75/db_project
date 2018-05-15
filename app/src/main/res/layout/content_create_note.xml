@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/new_note__create_button"
+        app:layout_constraintBottom_toTopOf="@+id/create_note__asAdmin_cart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alarm_clock_card">
 
@@ -158,9 +158,10 @@
         android:id="@+id/create_note__asAdmin_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_note__alarm_clock_settings">
+        app:layout_constraintTop_toBottomOf="@+id/new_note__alarm_clock_settings"
+        app:layout_constraintBottom_toTopOf="@+id/new_note__create_button">
 
         <LinearLayout
             android:orientation="horizontal"

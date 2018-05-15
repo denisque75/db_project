@@ -118,9 +118,6 @@ public class MainActivity extends AppCompatActivity implements MainListView,
             Intent intent = new Intent(this, ScheduleActivity.class);
             startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav__bells_schedule) {
-            Intent intent = new Intent(this, BellsScheduleActivity.class);
-            startActivity(intent);
         } else if (id == R.id.nav__note) {
             Intent intent = new Intent(this, CreateNoteActivity.class);
             startActivity(intent);

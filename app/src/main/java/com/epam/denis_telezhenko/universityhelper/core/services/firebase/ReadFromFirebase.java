@@ -40,7 +40,7 @@ public class ReadFromFirebase {
             }
         };
         database.child(Constants.NOTES_NODE).child(uid).addValueEventListener(noteListener);
-        database.child(Constants.NOTES_NODE).child(group).addListenerForSingleValueEvent(noteListener);
+        database.child(Constants.GLOBAL_NOTES).child(group).addValueEventListener(noteListener);
     }
 
     public static void readSchedule(MutableLiveData<List<Data>> scheduleData,

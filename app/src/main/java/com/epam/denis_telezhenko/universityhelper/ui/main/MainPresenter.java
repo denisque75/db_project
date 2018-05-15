@@ -35,7 +35,6 @@ public class MainPresenter extends BasePresenter<MainListView> implements DataFr
     @Override
     public void newDataFromServer(List<Note> data) {
         saveDataToDb(data);
-        getView().setEntitiesToAdapter(data);
     }
 
     private void saveDataToDb(List<Note> data) {

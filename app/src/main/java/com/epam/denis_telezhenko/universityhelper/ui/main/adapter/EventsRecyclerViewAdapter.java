@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,12 +30,14 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         TextView title;
         TextView description;
         TextView time;
+        ImageView adminLabel;
 
         ViewHolder(View itemView){
             super(itemView);
             title = itemView.findViewById(R.id.main_card_item__title);
             description = itemView.findViewById(R.id.main_card_item__desc);
             time = itemView.findViewById(R.id.main_card_item__time);
+            adminLabel = itemView.findViewById(R.id.create_note__admin_label);
         }
 
         void onBindView(OnClickItem onClickItem, Note note){
@@ -44,6 +47,9 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
                         new LinearLayout.LayoutParams(0, 0);
                 params.weight = 0;
                 layout.setLayoutParams(params);
+            }
+            if (note.isGlobal()) {
+                adminLabel.setVisibility(View.VISIBLE);
             }
             title.setText(note.getTitle());
             description.setText(note.getDescription());

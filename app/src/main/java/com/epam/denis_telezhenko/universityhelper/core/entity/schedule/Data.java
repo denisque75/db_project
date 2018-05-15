@@ -18,6 +18,7 @@ public class Data implements Parcelable {
     @NonNull
     private String dayName;
 
+    @Ignore
     @Embedded
     private Day day;
 

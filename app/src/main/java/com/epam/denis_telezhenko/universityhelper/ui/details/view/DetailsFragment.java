@@ -1,5 +1,6 @@
 package com.epam.denis_telezhenko.universityhelper.ui.details.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,8 +16,10 @@ import com.epam.denis_telezhenko.universityhelper.App;
 import com.epam.denis_telezhenko.universityhelper.R;
 import com.epam.denis_telezhenko.universityhelper.core.dao.NoteDao;
 import com.epam.denis_telezhenko.universityhelper.core.entity.Note;
+import com.epam.denis_telezhenko.universityhelper.core.services.firebase.Factory;
 import com.epam.denis_telezhenko.universityhelper.ui.StubUtils;
 import com.epam.denis_telezhenko.universityhelper.ui.details.DetailsPresenter;
+import com.epam.denis_telezhenko.universityhelper.ui.utils.Constants;
 import com.epam.denis_telezhenko.universityhelper.ui.utils.TimeUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,6 +29,7 @@ import java.util.List;
 public class DetailsFragment extends Fragment implements DetailsView {
     public static final String TAG = "details_fragment";
     private long id;
+    private boolean isGlobal = false;
 
     //if user delete note, the system must delete it from server and local db, and after finish
     //current activity
@@ -35,6 +39,9 @@ public class DetailsFragment extends Fragment implements DetailsView {
     private TextView titleText;
     private TextView descText;
     private TextView timeText;
+
+    private Button editButton;
+    private Button removeButton;
 
     private DetailsPresenter presenter;
 
@@ -65,8 +72,6 @@ public class DetailsFragment extends Fragment implements DetailsView {
         presenter = new DetailsPresenter(this, dao, FirebaseDatabase.getInstance().getReference());
 
         id = getArguments().getLong(DetailsActivity.NOTE_ID_TAG, 0);
-        //TODO: noteEntities save in MainActivity to DB and then read from DB here by id;
-        //noteEntities = StubUtils.getNotes();
         presenter.showNoteById(id);
         presenter.getIsDeleted().observe(this, this::deletedNote);
 
@@ -96,6 +101,15 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
     @Override
     public void showNote(Note note) {
+        boolean isAdmin = getActivity().getSharedPreferences(Constants.USER_SHARED, Context.MODE_PRIVATE)
+                .getBoolean(Constants.IS_ADMIN, false);
+        if (note.isGlobal()) {
+            isGlobal = true;
+            if (!isAdmin) {
+                editButton.setEnabled(false);
+                removeButton.setEnabled(false);
+            }
+        }
         titleText.setText(note.getTitle());
         descText.setText(note.getDescription());
         if (note.getDate() == null && getView() != null) {
@@ -107,9 +121,9 @@ public class DetailsFragment extends Fragment implements DetailsView {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Button editButton = view.findViewById(R.id.details__edit);
+        editButton = view.findViewById(R.id.details__edit);
         editButton.setOnClickListener(this::editButton);
-        Button removeButton = view.findViewById(R.id.details__remove);
+        removeButton = view.findViewById(R.id.details__remove);
         removeButton.setOnClickListener(this::removeNote);
     }
 
@@ -126,6 +140,11 @@ public class DetailsFragment extends Fragment implements DetailsView {
     }
 
     private void removeNote(View view) {
-        presenter.deleteNote(FirebaseAuth.getInstance().getCurrentUser().getUid(), id);
+        if (isGlobal) {
+            String group = getActivity().getSharedPreferences(Constants.USER_SHARED, Context.MODE_PRIVATE).getString(Constants.GROUP, "");
+            presenter.deleteNote(group, id, Factory.DELETE_AS_ADMIN);
+        } else {
+            presenter.deleteNote(FirebaseAuth.getInstance().getCurrentUser().getUid(), id, Factory.DELETE_AS_USER);
+        }
     }
 }

@@ -20,6 +20,9 @@ public interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNotes(List<Note> noteList);
 
+    @Query("DELETE FROM Note")
+    void clearTable();
+
     @Query("SELECT * FROM Note")
     List<Note> readNotes();
 

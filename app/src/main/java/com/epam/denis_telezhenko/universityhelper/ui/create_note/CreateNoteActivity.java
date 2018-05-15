@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -93,9 +94,12 @@ public class CreateNoteActivity extends AppCompatActivity implements OnPickerCom
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        if (getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getBoolean(Constants.IS_ADMIN, false)) {
+        CheckBox checkBox = findViewById(R.id.create_note__asAdmin);
+        if (getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getBoolean(Constants.IS_ADMIN, false)
+                && checkBox.isChecked()) {
             String group = getSharedPreferences(Constants.USER_SHARED, MODE_PRIVATE).getString(Constants.GROUP, "waste");
-            reference.child(Constants.NOTES_NODE).child(group).push().setValue(note);
+            note.setGlobal(true);
+            reference.child(Constants.GLOBAL_NOTES).child(group).push().setValue(note);
         } else {
             reference.child(Constants.NOTES_NODE).child(uid).push().
                     setValue(note);

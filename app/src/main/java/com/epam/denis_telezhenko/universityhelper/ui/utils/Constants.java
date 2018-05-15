@@ -4,6 +4,8 @@ public interface Constants {
     String NOTES_NODE = "notes";
     String USERS_NODE = "users";
     String SCHEDULE_NODE = "schedule";
+    String GLOBAL_NOTES = "global_notes";
+
     String USER_SHARED = "user";
 
     String USER_NAME = "user.name";

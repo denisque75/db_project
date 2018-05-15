@@ -54,6 +54,7 @@ public class LoginPresenter extends BasePresenter<LoginView> implements AuthCall
                 Log.d(TAG, "onDataChange: user = " + user);
                 user.setAdmin((Boolean) dataSnapshot.child("isAdmin").getValue());
                 getView().saveUser(user);
+                getView().startMainActivity();
             }
 
             @Override
@@ -61,6 +62,5 @@ public class LoginPresenter extends BasePresenter<LoginView> implements AuthCall
                 Log.d(TAG, "onCancelled: ");
             }
         });
-        getView().startMainActivity();
     }
 }

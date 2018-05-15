@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
     @Override
     public void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        Log.d(TAG, "startMainActivity");
         startActivity(intent);
         finish();
     }
@@ -90,5 +92,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         editor.putBoolean(Constants.IS_ADMIN, user.isAdmin());
         editor.putString(Constants.GROUP, user.getGroup());
         editor.apply();
+        Log.d(TAG, "saveUser");
     }
 }

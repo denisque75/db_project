@@ -29,9 +29,9 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
         new SelectAsyncTask(noteDao, getView()).execute(id);
     }
 
-    public void deleteNote(String uid, long id) {
+    public void deleteNote(String uid, long id, String strategy) {
         new DeleteByIdAsyncTask(noteDao,isDeleted).execute(id);
-        ModifyFirebase.deleteNote(uid, id, database, isDeleted);
+        ModifyFirebase.deleteNote(uid, id, database, isDeleted, strategy);
     }
 
     public MutableLiveData<Boolean> getIsDeleted() {

@@ -10,11 +10,6 @@
             android:title="@string/schedule"/>
 
         <item
-            android:id="@+id/nav__bells_schedule"
-            android:icon="@drawable/ic_bells_schedule_24dp"
-            android:title="@string/schedule_of_bells"/>
-
-        <item
             android:id="@+id/nav__note"
             android:icon="@drawable/ic_note_add_24dp"
             android:title="@string/note"/>
