@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#39c2d7</color>
+    <color name="primaryLightColor">#78f5ff</color>
+    <color name="primaryDarkColor">#0091a6</color>
+    <color name="secondaryColor">#ffa726</color>
+    <color name="secondaryLightColor">#ffd95b</color>
+    <color name="secondaryDarkColor">#c77800</color>
+    <color name="backgroundColor">#e1e2e1</color>
+    <color name="backgroundSecondColor">#F5F5F6</color>
+    <color name="primaryTextColor">#fc434343</color>
+    <color name="secondaryTextColor">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="timeColor">#26A69A</color>
+    <color name="deleteAndWrongColor">#ff7043</color>
+    <color name="scheduleGroupInfoColor">#7bffa726</color>
+</resources>

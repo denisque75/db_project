@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav__schedule"
+            android:icon="@drawable/ic_schadule_24dp"
+            android:title="@string/schedule"/>
+
+        <item
+            android:id="@+id/nav__note"
+            android:icon="@drawable/ic_note_add_24dp"
+            android:title="@string/note"/>
+        <item
+            android:id="@+id/nav__logout"
+            android:icon="@drawable/ic_login_24dp"
+            android:title="@string/log_out"
+            />
+    </group>
+
+</menu>
